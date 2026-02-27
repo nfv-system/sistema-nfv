@@ -6,7 +6,9 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///nfv.db'
+import os
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'nfv_super_secret_key'
 
@@ -128,4 +130,5 @@ def historial_lote(lote_id):
 
 
 if __name__ == "__main__":
+
     app.run(debug=True)
